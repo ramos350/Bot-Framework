@@ -32,5 +32,3 @@ export default interface Command {
             | CommandInteraction
     ) => Promise<unknown>;
 }
-
-

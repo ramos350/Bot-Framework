@@ -4,8 +4,8 @@ import { config } from 'dotenv';
 import EventLoader from './loaders/EventLoader';
 import ApplicationCommandLoader from './loaders/ApplicationCommandLoader';
 import { MessageCommandLoader } from './loaders/MessageCommandLoader';
-config()
-const client = new Client()
+config();
+const client = new Client();
 
 Promise.all([
     EventLoader(client),

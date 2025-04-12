@@ -1,7 +1,7 @@
-import { Client } from "discord.js";
-import { readdirSync, statSync } from "fs";
-import path from "path";
-import Result from "../lib/Result";
+import { Client } from 'discord.js';
+import { readdirSync, statSync } from 'fs';
+import path from 'path';
+import Result from '../lib/Result';
 
 export default async function (client: Client) {
     let count = 0;
@@ -17,41 +17,44 @@ export default async function (client: Client) {
                 continue;
             }
 
-            if (!entry.endsWith(".js")) continue;
+            if (!entry.endsWith('.js')) continue;
 
             const relativePath = path
-                .relative("dist", fullPath)
-                .replace(/\\/g, "/");
+                .relative('dist', fullPath)
+                .replace(/\\/g, '/');
 
-            const { default: importedModule } = await import(`../${relativePath}`);
+            const { default: importedModule } = await import(
+                `../${relativePath}`
+            );
             const eventModule = importedModule.default;
-            if (!eventModule || typeof eventModule.run !== "function") continue;
+            if (!eventModule || typeof eventModule.run !== 'function') continue;
             const once = eventModule.once ?? false;
             const eventName = eventModule.event;
             if (!eventName) continue;
 
             const exportedClassName =
-                eventModule.constructor?.name && eventModule.constructor.name !== "Object"
+                eventModule.constructor?.name &&
+                eventModule.constructor.name !== 'Object'
                     ? eventModule.constructor.name
                     : undefined;
 
-            const fileName = path.basename(entry, ".js");
+            const fileName = path.basename(entry, '.js');
 
-            const name =
-                eventModule.name ??
-                exportedClassName ??
-                fileName;
+            const name = eventModule.name ?? exportedClassName ?? fileName;
 
             const handler = async (...args: any[]) => {
                 try {
                     let shouldRun = true;
 
-                    if (typeof eventModule.parse === "function") {
+                    if (typeof eventModule.parse === 'function') {
                         const context = {
                             ok: Result.ok,
                             none: Result.none
                         };
-                        const result = await eventModule.parse.apply(context, args);
+                        const result = await eventModule.parse.apply(
+                            context,
+                            args
+                        );
                         shouldRun = result?.ok === true;
                     }
 
@@ -81,6 +84,6 @@ export default async function (client: Client) {
         }
     };
 
-    await loadFolder("dist/listeners");
+    await loadFolder('dist/listeners');
     client.console.info(`Listening to ${client.eventListeners.size} events`);
 }

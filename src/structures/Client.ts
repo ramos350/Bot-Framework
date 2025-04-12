@@ -3,7 +3,7 @@ import {
     Client,
     Collection,
     GatewayIntentBits,
-    Partials,
+    Partials
 } from 'discord.js';
 import consola from 'consola';
 import { prefix } from '../config';
@@ -17,7 +17,7 @@ export default class extends Client {
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMembers,
                 GatewayIntentBits.GuildMessages,
-                GatewayIntentBits.MessageContent,
+                GatewayIntentBits.MessageContent
             ],
             partials: [
                 Partials.Channel,
@@ -34,8 +34,8 @@ export default class extends Client {
                 ],
                 status: 'online'
             }
-        })
-        this.console = consola
+        });
+        this.console = consola;
         this.commands = new Collection();
         this.eventListeners = new Collection();
         this.prefix = prefix;

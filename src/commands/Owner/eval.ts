@@ -66,7 +66,7 @@ const Eval = async (
             depth: flags.depth
         });
     }
-    result = clean(result)
+    result = clean(result);
 
     return { result, success };
 };

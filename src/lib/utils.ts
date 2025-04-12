@@ -11,11 +11,11 @@ export const doPermissionCheck = (
 };
 
 export function clean(text: string): string {
-    const dir = __dirname.split("\\");
+    const dir = __dirname.split('\\');
     for (let i = 0; i < 3; ++i) dir.pop();
     return text
-      .replace(/`/g, "`" + String.fromCharCode(8203))
-      .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replaceAll("```", "\\`\\`\\`")
-      .replaceAll(dir.join("\\"), "...\\user");
-  }
+        .replace(/`/g, '`' + String.fromCharCode(8203))
+        .replace(/@/g, '@' + String.fromCharCode(8203))
+        .replaceAll('```', '\\`\\`\\`')
+        .replaceAll(dir.join('\\'), '...\\user');
+}

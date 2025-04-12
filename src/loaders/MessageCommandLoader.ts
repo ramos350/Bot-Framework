@@ -1,5 +1,5 @@
-import { Client } from "discord.js";
-import { readdirSync } from "fs";
+import { Client } from 'discord.js';
+import { readdirSync } from 'fs';
 
 export async function MessageCommandLoader(client: Client) {
     const dirs = readdirSync('dist/commands');
