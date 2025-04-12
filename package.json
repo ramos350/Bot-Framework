@@ -1,0 +1,35 @@
+{
+    "name": "discordbot-typescript-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "watch": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+        "format": "npx prettier -w src/",
+        "dev": "bun run build && bun run start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Dqrshan/Bot-Framework.git"
+    },
+    "author": "Lorenz",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Dqrshan/Bot-Framework/issues"
+    },
+    "homepage": "https://github.com/Dqrshan/Bot-Framework#readme",
+    "dependencies": {
+        "consola": "^3.2.3",
+        "discord.js": "^14.18.0",
+        "dotenv": "^16.3.1",
+        "mongoose": "^8.13.2"
+    },
+    "devDependencies": {
+        "@types/node": "^22.14.1",
+        "prettier": "^3.0.1",
+        "tsc-watch": "^6.0.4",
+        "typescript": "^5.8.3"
+    }
+}
