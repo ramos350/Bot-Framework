@@ -1,7 +1,7 @@
 import consola from 'consola';
 import type { Collection } from 'discord.js';
-import type Command from './structures/Command';
-import Listener from './structures/Listener';
+import type Command from '#structure/Command';
+import Listener from '#structure/Listener';
 
 declare global {
     namespace NodeJS {
