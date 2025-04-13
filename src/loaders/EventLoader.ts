@@ -1,9 +1,11 @@
-import { Client } from 'discord.js';
+import { Client, Events } from 'discord.js';
 import { readdirSync, statSync } from 'fs';
 import path from 'path';
 import Result from '../lib/Result';
+import { loadersConfig } from '../config';
 
 export default async function (client: Client) {
+    if (!loadersConfig.eventLoader) return;
     let count = 0;
 
     const loadFolder = async (dir: string) => {
@@ -59,7 +61,8 @@ export default async function (client: Client) {
                     }
 
                     if (shouldRun) {
-                        await eventModule.run(client, ...args);
+                        if (eventModule.event === Events.ClientReady) await eventModule.run(client, ...args);
+                        else await eventModule.run(...args);
                     }
                 } catch (err) {
                     client.console.error(`Error in event "${name}":`, err);

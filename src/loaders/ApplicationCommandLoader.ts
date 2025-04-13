@@ -1,8 +1,9 @@
 import { ApplicationCommandData, Client, REST, Routes } from 'discord.js';
 import { readdirSync } from 'fs';
-import { clientId } from '../config';
+import { clientId, loadersConfig } from '../config';
 
 export default async function ApplicationCommandLoader(client: Client) {
+    if (!loadersConfig.interactionCommandLoader) return;
     client.console.info('Initializing Application Command Registry..');
 
     const globalCommands: ApplicationCommandData[] = [];

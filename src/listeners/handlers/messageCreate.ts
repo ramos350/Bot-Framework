@@ -1,15 +1,19 @@
-import { Client, Events, type Message, type TextChannel } from 'discord.js';
-import { owners } from '../../config';
+import { Events, type Message, type TextChannel } from 'discord.js';
+import { loadersConfig, owners } from '../../config';
 import { doPermissionCheck } from '../../lib/utils';
 import type Command from '../../structures/Command';
 import Listener from '../../structures/Listener';
+import Result from '../../lib/Result';
 
 export default <Listener>{
     event: Events.MessageCreate,
-    run: async (_: Client, msg: Message) => {
-        if (msg.partial) await msg.fetch();
-        if (!msg.author || msg.author.bot || msg.author.system) return;
-        if (msg.content.startsWith(msg.client.prefix)) {
+    parse: async (msg: Message) => {
+        if (!loadersConfig.messageCommandLoader) return Result.none();
+        if (!msg.author || msg.author.bot || msg.author.system) return Result.none();
+        if (!msg.content.startsWith(msg.client.prefix)) return Result.none();
+        return Result.ok()
+    },
+    run: async (msg: Message) => {
             const args = msg.content
                 .slice(msg.client.prefix.length)
                 .split(/ +/g);
@@ -71,6 +75,5 @@ export default <Listener>{
                 msg.reply('An error occurred');
                 msg.client.console.error(error);
             }
-        }
     }
 };

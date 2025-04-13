@@ -5,3 +5,8 @@ export const owners = [
 ];
 export const clientId = '1358427860011847870';
 export const prefix = 'x';
+export const loadersConfig = {
+    messageCommandLoader: true,
+    interactionCommandLoader: true,
+    eventLoader: true,
+}

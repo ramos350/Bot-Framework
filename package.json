@@ -12,19 +12,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Dqrshan/Bot-Framework.git"
+        "url": "git+https://github.com/ramos350/Bot-Framework.git"
     },
-    "author": "Lorenz",
+    "author": "Ramos350",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/Dqrshan/Bot-Framework/issues"
+        "url": "https://github.com/ramos350/Bot-Framework/issues"
     },
-    "homepage": "https://github.com/Dqrshan/Bot-Framework#readme",
+    "homepage": "https://github.com/ramos350/Bot-Framework#readme",
     "dependencies": {
         "consola": "^3.2.3",
         "discord.js": "^14.18.0",
-        "dotenv": "^16.3.1",
-        "mongoose": "^8.13.2"
+        "dotenv": "^16.3.1"
     },
     "devDependencies": {
         "@types/node": "^22.14.1",

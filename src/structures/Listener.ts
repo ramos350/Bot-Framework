@@ -1,4 +1,4 @@
-import { Client, ClientEvents } from 'discord.js';
+import { ClientEvents } from 'discord.js';
 import Result from '../lib/Result';
 
 export default interface Listener<
@@ -9,5 +9,5 @@ export default interface Listener<
     once?: boolean;
 
     parse?: (...args: ClientEvents[K]) => Result | Promise<Result>;
-    run: (client: Client, ...args: ClientEvents[K]) => any | Promise<any>;
+    run: (...args: ClientEvents[K]) => any | Promise<any>;
 }
