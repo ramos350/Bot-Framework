@@ -7,7 +7,6 @@ declare global {
     namespace NodeJS {
         interface ProcessEnv {
             DISCORD_TOKEN: string;
-            MONGO_CONNECTION_STRING: string;
         }
     }
 }
