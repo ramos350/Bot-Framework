@@ -1,7 +1,7 @@
 import { Client, Events } from 'discord.js';
 import { readdirSync, statSync } from 'fs';
 import path from 'path';
-import Result from '../lib/Result';
+import Result from '#lib/Result';
 import { loadersConfig } from '../config';
 
 export default async function (client: Client) {

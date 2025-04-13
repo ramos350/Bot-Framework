@@ -1,5 +1,5 @@
 // import { rmSync } from 'fs';
-import Client from './structures/Client';
+import Client from '#structure/Client';
 import { config } from 'dotenv';
 import EventLoader from './loaders/EventLoader';
 import ApplicationCommandLoader from './loaders/ApplicationCommandLoader';

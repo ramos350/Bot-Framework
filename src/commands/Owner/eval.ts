@@ -1,8 +1,9 @@
 import type { Message } from 'discord.js';
-import type Command from '../../structures/Command';
-import { isThenable } from '../../lib/isThenable';
+import type Command from '#structure/Command';
+import { isThenable } from '#lib/isThenable';
 import { inspect } from 'util';
-import { clean } from '../../lib/utils';
+import { clean } from '#lib/utils';
+import parseCodeBlock from '#lib/codeBlockParser';
 
 export default <Command>{
     name: 'eval',
@@ -15,15 +16,17 @@ export default <Command>{
             });
             return;
         }
-        const code = args.join(' ');
+
+        const codeBlockParsed = parseCodeBlock(args.join(' '));
+        const code = codeBlockParsed.code ?? args.join(' ');
 
         const { result, success } = await Eval(msg, code, {
-            async: code.includes('await'),
+            async: code.includes('await') || code.includes('return'),
             depth: 2
         });
 
         const output = success
-            ? '```js\n' + result + '\n```'
+            ? `\`\`\`${codeBlockParsed.lang ?? 'js'}\n' + result + '\n\`\`\``
             : '**ERROR**:\n```bash\n' + result + '\n```';
 
         if (output.length > 2000) {

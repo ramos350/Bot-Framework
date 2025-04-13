@@ -5,10 +5,10 @@ import {
     TextChannel
 } from 'discord.js';
 import { owners } from '../../config';
-import { doPermissionCheck } from '../../lib/utils';
-import Listener from '../../structures/Listener';
-import Result from '../../lib/Result';
-import Command from '../../structures/Command';
+import { doPermissionCheck } from '#lib/utils';
+import Listener from '#structure/Listener';
+import Result from '#lib/Result';
+import Command from '#structure/Command';
 
 export default <Listener>{
     event: Events.InteractionCreate,
@@ -93,6 +93,9 @@ export default <Listener>{
                 command.contextMenuRun
             ) {
                 await command.contextMenuRun(interaction);
+            }
+            if (interaction.isAutocomplete() && command.autocompleteRun) {
+                await command.autocompleteRun(interaction);
             }
         } catch (error) {
             interaction.client.console.error(error);

@@ -1,5 +1,5 @@
 import { ClientEvents } from 'discord.js';
-import Result from '../lib/Result';
+import Result from '#lib/Result';
 
 export default interface Listener<
     K extends keyof ClientEvents = keyof ClientEvents

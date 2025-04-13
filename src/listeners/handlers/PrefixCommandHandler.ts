@@ -1,9 +1,9 @@
 import { Events, type Message, type TextChannel } from 'discord.js';
 import { loadersConfig, owners } from '../../config';
-import { doPermissionCheck } from '../../lib/utils';
-import type Command from '../../structures/Command';
-import Listener from '../../structures/Listener';
-import Result from '../../lib/Result';
+import { doPermissionCheck } from '#lib/utils';
+import type Command from '#structure/Command';
+import Listener from '#structure/Listener';
+import Result from '#lib/Result';
 
 export default <Listener>{
     event: Events.MessageCreate,

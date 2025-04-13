@@ -1,5 +1,5 @@
 import { Client, Events } from 'discord.js';
-import Listener from '../../structures/Listener';
+import Listener from '#structure/Listener';
 import { loadersConfig } from '../../config';
 
 export default <Listener>{

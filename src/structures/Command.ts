@@ -6,7 +6,8 @@ import type {
     MessageContextMenuCommandInteraction,
     PermissionResolvable,
     SlashCommandBuilder,
-    ContextMenuCommandBuilder
+    ContextMenuCommandBuilder,
+    AutocompleteInteraction
 } from 'discord.js';
 
 export default interface Command {
@@ -30,5 +31,8 @@ export default interface Command {
             | UserContextMenuCommandInteraction
             | MessageContextMenuCommandInteraction
             | CommandInteraction
+    ) => Promise<unknown>;
+    autocompleteRun?: (
+        ctx: AutocompleteInteraction
     ) => Promise<unknown>;
 }

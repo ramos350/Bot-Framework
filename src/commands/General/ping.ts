@@ -1,5 +1,5 @@
 import { CommandInteraction, Message, SlashCommandBuilder } from 'discord.js';
-import type Command from '../../structures/Command';
+import type Command from '#structure/Command';
 
 export default <Command>{
     name: 'ping',

@@ -20,6 +20,10 @@
         "url": "https://github.com/ramos350/Bot-Framework/issues"
     },
     "homepage": "https://github.com/ramos350/Bot-Framework#readme",
+    "imports": {
+        "#lib/*": "./dist/lib/*.js",
+        "#structure/*": "./dist/structures/*.js"
+      },
     "dependencies": {
         "consola": "^3.2.3",
         "discord.js": "^14.18.0",
