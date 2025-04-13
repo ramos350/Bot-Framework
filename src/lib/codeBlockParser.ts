@@ -1,8 +1,9 @@
 const codeBlockRegex = /```(?:(?<lang>\S+)\n)?\s?(?<code>[^]+?)\s?```/;
 
-export default function parseCodeBlock(
-    code: string,
-): { code?: string; lang?: string } {
+export default function parseCodeBlock(code: string): {
+    code?: string;
+    lang?: string;
+} {
     const match = code.match(codeBlockRegex);
     if (!match) {
         return { code, lang: '' };

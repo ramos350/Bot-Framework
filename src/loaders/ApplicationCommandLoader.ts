@@ -21,7 +21,10 @@ export default async function ApplicationCommandLoader(client: Client) {
 
             if (!command || !command.applicationCommand) continue;
 
-            if (command.applicationCommand && !(command.chatInputRun && command.contextMenuRun)) {
+            if (
+                command.applicationCommand &&
+                !(command.chatInputRun && command.contextMenuRun)
+            ) {
                 client.console.warn(
                     `Command ${command.name} is missing chatInputRun or contextMenuRun method. Skipping registration.`
                 );

@@ -32,7 +32,5 @@ export default interface Command {
             | MessageContextMenuCommandInteraction
             | CommandInteraction
     ) => Promise<unknown>;
-    autocompleteRun?: (
-        ctx: AutocompleteInteraction
-    ) => Promise<unknown>;
+    autocompleteRun?: (ctx: AutocompleteInteraction) => Promise<unknown>;
 }
