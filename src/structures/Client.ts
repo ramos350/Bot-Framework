@@ -39,5 +39,6 @@ export default class extends Client {
         this.commands = new Collection();
         this.eventListeners = new Collection();
         this.prefix = prefix;
+        this.cooldowns = new Map<string, Map<string, number>>();
     }
 }

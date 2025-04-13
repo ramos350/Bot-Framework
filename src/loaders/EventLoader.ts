@@ -61,7 +61,8 @@ export default async function (client: Client) {
                     }
 
                     if (shouldRun) {
-                        if (eventModule.event === Events.ClientReady) await eventModule.run(client, ...args);
+                        if (eventModule.event === Events.ClientReady)
+                            await eventModule.run(client, ...args);
                         else await eventModule.run(...args);
                     }
                 } catch (err) {

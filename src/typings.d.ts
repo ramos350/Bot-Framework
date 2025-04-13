@@ -19,5 +19,6 @@ declare module 'discord.js' {
         eventListeners: Collection<string, Listener>;
         prefix: string;
         mongo: Database;
+        cooldowns: Map<string, Map<string, number>>;
     }
 }

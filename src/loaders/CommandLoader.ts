@@ -2,7 +2,7 @@ import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { loadersConfig } from '../config';
 
-export async function MessageCommandLoader(client: Client) {
+export async function CommandLoader(client: Client) {
     if (!loadersConfig.messageCommandLoader) return;
 
     const dirs = readdirSync('dist/commands');
