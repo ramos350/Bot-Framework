@@ -2,16 +2,21 @@ import { Client, Events } from 'discord.js';
 import Listener from '#structure/Listener';
 import { loadersConfig } from '../../config';
 
-export default new Listener({
-    event: Events.ClientReady,
-    run: async (client: Client) => {
+export default class Ready extends Listener {
+    constructor() {
+        super({
+            event: Events.ClientReady
+        });
+    }
+    // @ts-ignore
+    public override async run(client: Client) {
         const { tag, id } = client.user!;
         client.console.info('Ready!');
         client.console.info(`Logged in as ${tag} [${id}]`);
         loaderTable(client);
         return;
     }
-})
+}
 
 function loaderTable(client: Client) {
     const loaderTable: Array<{ Typed: string; Loaded: number; Items: string }> =

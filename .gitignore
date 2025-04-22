@@ -3,3 +3,4 @@ dist/
 .env
 package-lock.json
 bun.lock
+src/config.ts

@@ -3,7 +3,7 @@ import type { Collection } from 'discord.js';
 import type Command from '#structure/Command';
 import Listener from '#structure/Listener';
 
-export {}
+export {};
 
 declare global {
     namespace NodeJS {
@@ -12,11 +12,11 @@ declare global {
         }
         interface Global {
             AVAILABLE_CONDITIONS: string[];
-          }
+        }
     }
     interface GlobalThis {
         AVAILABLE_CONDITIONS: string[];
-      }
+    }
 }
 
 declare module 'discord.js' {

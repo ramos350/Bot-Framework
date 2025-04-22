@@ -1,20 +1,30 @@
-import { Events, type Message, type TextChannel } from 'discord.js';
+import {
+    Events,
+    OmitPartialGroupDMChannel,
+    type Message,
+    type TextChannel
+} from 'discord.js';
 import { loadersConfig, owners } from '../../config';
 import { doPermissionCheck } from '#lib/utils';
 import type Command from '#structure/Command';
 import Listener from '#structure/Listener';
 import Result from '#lib/Result';
 
-export default <Listener>{
-    event: Events.MessageCreate,
-    parse: async (msg: Message) => {
-        if (!loadersConfig.messageCommandLoader) return Result.none();
-        if (!msg.author || msg.author.bot || msg.author.system)
-            return Result.none();
-        if (!msg.content.startsWith(msg.client.prefix)) return Result.none();
-        return Result.ok();
-    },
-    run: async (msg: Message) => {
+export default class PrefixCommandHandler extends Listener {
+    public constructor() {
+        super({
+            event: Events.MessageCreate,
+            parse: async (msg: Message) => {
+                if (!loadersConfig.messageCommandLoader) return Result.none();
+                if (!msg.author || msg.author.bot || msg.author.system)
+                    return Result.none();
+                if (!msg.content.startsWith(msg.client.prefix))
+                    return Result.none();
+                return Result.ok();
+            }
+        });
+    }
+    public override async run(msg: OmitPartialGroupDMChannel<Message>) {
         const cooldowns = msg.client.cooldowns;
         const args = msg.content.slice(msg.client.prefix.length).split(/ +/g);
         const c = args.shift();
@@ -48,6 +58,17 @@ export default <Listener>{
                 return;
             }
 
+            // Run conditions if any are defined
+            if (command.conditions && command.conditions.length > 0) {
+                const result = await command.runConditions(msg, 'message');
+                if (!result.success) {
+                    msg.reply({
+                        content: result.error || 'You cannot use this command.'
+                    });
+                    return;
+                }
+            }
+
             if (command.cooldown) {
                 const now = Date.now();
                 const timestamps = cooldowns.get(command.name) || new Map();
@@ -61,7 +82,7 @@ export default <Listener>{
                     return;
                 }
 
-                timestamps.set(msg.author.id, now + command.cooldown);
+                timestamps.set(msg.author.id, now + command.cooldown * 1000);
                 cooldowns.set(command.name, timestamps);
             }
 
@@ -98,4 +119,4 @@ export default <Listener>{
             msg.client.console.error(error);
         }
     }
-};
+}
