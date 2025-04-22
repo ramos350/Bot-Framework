@@ -2,7 +2,7 @@ import { Client, Events } from 'discord.js';
 import Listener from '#structure/Listener';
 import { loadersConfig } from '../../config';
 
-export default <Listener>{
+export default new Listener({
     event: Events.ClientReady,
     run: async (client: Client) => {
         const { tag, id } = client.user!;
@@ -11,7 +11,7 @@ export default <Listener>{
         loaderTable(client);
         return;
     }
-};
+})
 
 function loaderTable(client: Client) {
     const loaderTable: Array<{ Typed: string; Loaded: number; Items: string }> =

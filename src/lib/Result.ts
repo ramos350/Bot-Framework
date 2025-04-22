@@ -1,8 +1,10 @@
 export default class Result {
     readonly ok: boolean;
+    readonly reason?: string
 
-    private constructor(ok: boolean) {
+    private constructor(ok: boolean, reason?: string) {
         this.ok = ok;
+        this.reason = reason
     }
 
     static ok(): Result {
@@ -11,5 +13,9 @@ export default class Result {
 
     static none(): Result {
         return new Result(false);
+    }
+
+    static reason(reason: string): Result {
+        return new Result(false, reason)
     }
 }

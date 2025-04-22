@@ -23,16 +23,16 @@
     "imports": {
         "#lib/*": "./dist/lib/*.js",
         "#structure/*": "./dist/structures/*.js"
-      },
+    },
     "dependencies": {
-        "consola": "^3.2.3",
+        "consola": "^3.4.2",
         "discord.js": "^14.18.0",
-        "dotenv": "^16.3.1"
+        "dotenv": "^16.5.0"
     },
     "devDependencies": {
         "@types/node": "^22.14.1",
-        "prettier": "^3.0.1",
-        "tsc-watch": "^6.0.4",
+        "prettier": "^3.5.3",
+        "tsc-watch": "^6.2.1",
         "typescript": "^5.8.3"
     }
 }
